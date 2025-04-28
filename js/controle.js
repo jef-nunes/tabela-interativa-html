@@ -26,19 +26,19 @@ function atualizaTabela(){
         // Cria uma nova linha
         let linha = document.createElement("tr");
     
-        // Coluna Nome
+        // Célula nome
         let tdNome = document.createElement("td");
         tdNome.textContent = element.nome;
     
-        // Coluna Email
+        // Célula email
         let tdEmail = document.createElement("td");
         tdEmail.textContent = element.email;
 
-        // Coluna Telefone
+        // Célula telefone
         let tdTelefone = document.createElement("td");
         tdTelefone.textContent = element.telefone;
     
-        // Coluna Ações
+        // Célula ações (apagar e editar)
         let tdAcoes = document.createElement("td");
         let btnRemover = document.createElement("button");
         let btnEditar = document.createElement("button");
@@ -48,6 +48,8 @@ function atualizaTabela(){
         btnEditar.textContent = "Editar";
         tdAcoes.appendChild(btnEditar);
         tdAcoes.appendChild(btnRemover);
+
+        // Adicionar as células na linha na tabela
         linha.appendChild(tdNome);
         linha.appendChild(tdEmail);
         linha.appendChild(tdTelefone);
@@ -74,7 +76,12 @@ function criarRegistro(){
         if(!_telefone){
             _telefone = "?"
         }
-        let _id = baseDeDados[baseDeDados.length-1].id+1;
+        let _id;
+        if(baseDeDados.length >= 1){
+            _id = baseDeDados[baseDeDados.length-1].id+1;
+        } else{
+            _id = 0
+        }
         const objeto = {id: _id, nome: _nome, email: _email, telefone: _telefone};
         baseDeDados.push(objeto);
         atualizaTabela();
