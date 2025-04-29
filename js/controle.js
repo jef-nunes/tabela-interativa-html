@@ -4,7 +4,8 @@ const tbody = document.querySelector("#listaContatos tbody");
 const editNomeInput = document.getElementById("editNomeInput");
 const editEmailInput = document.getElementById("editEmailInput");
 const editTelefoneInput = document.getElementById("editTelefoneInput");
-
+const btFecharForm2 = document.getElementById("bt-fechar-form2");
+const btSalvarForm2 = document.getElementById("bt-salvar-form2");
 // Registros salvos
 let baseDeDados = [
     {id:1, nome:"João",email:"joão@exemplo.com",telefone:"123"},
@@ -107,7 +108,7 @@ let elementoEditadoID;
 // Abre o formulario popup que permite editar um registro
 function abrirEdicao(_id){
     elementoEditadoID = _id;
-    document.getElementById("popupForm").style.display = "block";
+    document.getElementById("form2").style.display = "block";
     document.getElementById("overlay").style.display = "block";
     let elementoAlvo;
     baseDeDados.forEach(element => {
@@ -121,13 +122,15 @@ function abrirEdicao(_id){
 }
 
 // Fecha o popup
+btFecharForm2.addEventListener("click", fecharEdicao);
   function fecharEdicao() {
-    document.getElementById("popupForm").style.display = "none";
+    document.getElementById("form2").style.display = "none";
     document.getElementById("overlay").style.display = "none";
   }
   
 // Salva a edição do registro alvo
 // e em seguida fecha o popup e atualiza a tabela
+btSalvarForm2.addEventListener("click", salvarEdicao);
   function salvarEdicao(){
 
     const _nome = editNomeInput.value;
